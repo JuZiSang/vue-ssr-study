@@ -50,8 +50,8 @@ webpack [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plug
 
 ## 开始从零配置
 
-- (VueToHtml)[https://github.com/JuZiSang/vue-ssr-study/blob/master/step1/src/server.js#L9]
-- (使用 Html 模板，及模板插值)[https://github.com/JuZiSang/vue-ssr-study/blob/master/step1/src/server.js#L35]
+- [VueToHtml](https://github.com/JuZiSang/vue-ssr-study/blob/master/step1/src/server.js#L9)
+- [使用 Html 模板，及模板插值](https://github.com/JuZiSang/vue-ssr-study/blob/master/step1/src/server.js#L35)
 
 ## 参考
 - [Vue SSR 指南](https://ssr.vuejs.org/zh/)
