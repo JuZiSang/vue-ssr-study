@@ -52,6 +52,11 @@ webpack [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plug
 
 - [Vue 转换 Html](https://github.com/JuZiSang/vue-ssr-study/blob/master/step1/src/server.js#L9)
 - [使用 Html 模板，及模板插值](https://github.com/JuZiSang/vue-ssr-study/blob/master/step1/src/server.js#L35)
+- [Vue 配合 webpack 打包](https://github.com/JuZiSang/vue-ssr-study/blob/master/step2)
+按照官方 [使用 webpack 的源码结构](https://ssr.vuejs.org/zh/guide/structure.html#%E4%BD%BF%E7%94%A8-webpack-%E7%9A%84%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84) 搭建，需要注意
+  - html 模板当中，需要写 `<meta charset="UTF-8">` 否则会乱码
+  - 服务的打包的js最好导出 [libraryExport: 'default'](https://github.com/JuZiSang/vue-ssr-study/blob/master/step2/config/webpack.server.config.js#L11)
+  - 模板 html 中，引入的客户端js，需要写在 `<!--vue-ssr-outlet-->` 之后，[例如：template.html](https://github.com/JuZiSang/vue-ssr-study/blob/master/step2/public/template.html)
 
 ## 参考
 - [Vue SSR 指南](https://ssr.vuejs.org/zh/)
