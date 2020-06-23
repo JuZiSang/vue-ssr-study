@@ -9,17 +9,28 @@ const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync(path.join(__dirname, './public/template.html'), 'utf-8')
 })
 
-const content = {
-  title: '这是一个 HTML 模板',
-  meta: `
+app.get('*', (req, res) => {
+  const content = {
+    url: req.url,
+    title: '这是一个 HTML 模板',
+    meta: `
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       `
-}
-
-app.get('*', (req, res) => {
-  renderer.renderToString(createApp(), content, (err, html) => {
-    res.end(html)
+  }
+  createApp(content).then((app) => {
+    renderer.renderToString(app, content, (err, html) => {
+      console.error(err)
+      if (err) {
+        if (err.code === 404) {
+          res.status(404).end('Page not found')
+        } else {
+          res.status(500).end('Internal Server Error')
+        }
+      } else {
+        res.end(html)
+      }
+    })
   })
 })
 

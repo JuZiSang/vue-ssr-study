@@ -10,7 +10,7 @@ module.exports = {
     : '#cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/dist/',
+    publicPath: '/static/',
     filename: '[name].[chunkhash].js'
   },
   resolve: {
@@ -50,6 +50,10 @@ module.exports = {
         test: /\.scss$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
+      {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader']
+      }
     ]
   },
   plugins: [
