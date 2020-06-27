@@ -12,10 +12,13 @@
     "build:server": "cross-env NODE_ENV=production webpack --config config/webpack.server.config.js --progress"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",
-    "vue-server-renderer": "^2.6.11"
+    "vue-server-renderer": "^2.6.11",
+    "vuex": "^3.4.0",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

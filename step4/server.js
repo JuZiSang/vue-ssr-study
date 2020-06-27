@@ -9,6 +9,15 @@ const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync(path.join(__dirname, './public/template.html'), 'utf-8')
 })
 
+app.get('/api/item', (req, res) => {
+  console.log('/api/items------')
+  res.status(200).json({
+    message: 'ok',
+    code: 1,
+    data: Array.from({ length: 20 }, (item, index) => ({ name: index }))
+  })
+})
+
 app.get('*', (req, res) => {
   const content = {
     url: req.url,
