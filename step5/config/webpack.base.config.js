@@ -7,7 +7,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   devtool: isProd
     ? false
-    : '#cheap-module-source-map',
+    : 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/static/',

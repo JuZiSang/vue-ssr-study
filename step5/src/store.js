@@ -16,7 +16,6 @@ export function createStore() {
         // 以便我们能够知道数据在何时更新
         return Axios.get('http://127.0.0.1:8880/api/item')
           .then((item) => {
-            console.log(item.data.data)
             commit('setItem', item.data.data)
           })
           .catch(err => {

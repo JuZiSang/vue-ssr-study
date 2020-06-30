@@ -1,16 +1,18 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const createApp = require('./dist/server-bundle')
+const serverBundle = require('./dist/vue-ssr-server-bundle.json')
+const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 
 app.use('/static', express.static(path.join('./dist')))
 
-const renderer = require('vue-server-renderer').createRenderer({
-  template: require('fs').readFileSync(path.join(__dirname, './public/template.html'), 'utf-8')
+const renderer = require('vue-server-renderer').createBundleRenderer(serverBundle, {
+  runInNewContext: false,
+  template: require('fs').readFileSync(path.join(__dirname, './public/template.html'), 'utf-8'),
+  clientManifest
 })
 
 app.get('/api/item', (req, res) => {
-  console.log('/api/items------')
   res.status(200).json({
     message: 'ok',
     code: 1,
@@ -27,19 +29,17 @@ app.get('*', (req, res) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       `
   }
-  createApp(content).then((app) => {
-    renderer.renderToString(app, content, (err, html) => {
-      console.error(err)
-      if (err) {
-        if (err.code === 404) {
-          res.status(404).end('Page not found')
-        } else {
-          res.status(500).end('Internal Server Error')
-        }
+  renderer.renderToString(content, (err, html) => {
+    console.error(err)
+    if (err) {
+      if (err.code === 404) {
+        res.status(404).end('Page not found')
       } else {
-        res.end(html)
+        res.status(500).end('Internal Server Error')
       }
-    })
+    } else {
+      res.end(html)
+    }
   })
 })
 
